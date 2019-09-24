@@ -1,18 +1,15 @@
 <template>
   <div id="app">
-    vue_shop
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'app',
-  components: {
-  }
+  components: {}
 }
 </script>
 
 <style>
-
 </style>
