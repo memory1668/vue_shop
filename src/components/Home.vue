@@ -28,7 +28,12 @@
               <span>{{item.authName}}</span>
             </template>
             <!-- 二级菜单 -->
-            <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
+            <el-menu-item
+              :index="'/'+subItem.path"
+              v-for="subItem in item.children"
+              :key="subItem.id"
+              @click="saveNavState('/'+subItem.path)"
+            >
               <template slot="title">
                 <i class="el-icon-menu"></i>
                 <span slot="title">{{subItem.authName}}</span>
@@ -62,7 +67,7 @@ export default {
       },
       // 是否折叠菜单
       isCollapsed: false,
-      activePath:''
+      activePath: ''
     }
   },
   methods: {
@@ -81,14 +86,14 @@ export default {
       }
       // 绑定数据
       this.menuList = res.data
-      console.log(this.menuList)
+      // console.log(this.menuList)
     },
     // 折叠菜单栏
     toggleCollapse() {
       this.isCollapsed = !this.isCollapsed
     },
-    saveNavState(activePath){
-      window.sessionStorage.setItem('activePath',activePath)
+    saveNavState(activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
     }
   }
