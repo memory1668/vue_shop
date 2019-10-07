@@ -8,6 +8,10 @@ import './assets/fonts/iconfont.css'
 import './assets/css/global.css'
 // 导入axios
 import axios from 'axios'
+// 导入树形表格
+import TreeTable from 'vue-table-with-tree-grid'
+Vue.component('tree-table', TreeTable)
+
 // 请求拦截器
 axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token')

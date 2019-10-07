@@ -26,7 +26,8 @@ import { Button,
   Tag,
   Tree,
   Select,
-  Option } from 'element-ui'
+  Option,
+  Cascader } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -54,6 +55,7 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(Cascader)
 
 // 挂载Meassage
 Vue.prototype.$message = Message
