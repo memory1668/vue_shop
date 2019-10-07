@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 面包屑导航区域 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>权限管理</el-breadcrumb-item>
@@ -63,7 +64,12 @@
               size="mini"
               @click="editRole(slotProps.row.id)"
             >编辑</el-button>
-            <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteRole(slotProps.row)">删除</el-button>
+            <el-button
+              type="danger"
+              icon="el-icon-delete"
+              size="mini"
+              @click="deleteRole(slotProps.row)"
+            >删除</el-button>
             <el-button
               type="warning"
               icon="el-icon-setting"
@@ -161,23 +167,23 @@ export default {
         roleDesc: ''
       },
       // 添加角色表单校验规则
-      addRoleRules:{
-        roleName:[
-           { required: true, message: '角色名称不能为空', trigger: 'blur' }
+      addRoleRules: {
+        roleName: [
+          { required: true, message: '角色名称不能为空', trigger: 'blur' }
         ]
       },
       // 编辑角色对话框是否可见
-      editRoleDialogVisible:false,
+      editRoleDialogVisible: false,
       // 编辑角色表单校验规则
-      editRoleRules:{
-        roleName:[
-           { required: true, message: '角色名称不能为空', trigger: 'blur' }
+      editRoleRules: {
+        roleName: [
+          { required: true, message: '角色名称不能为空', trigger: 'blur' }
         ]
       },
       // 编辑角色表单信息
-      editRoleForm:{},
+      editRoleForm: {},
       // 当前编辑角色的id
-      editRoleId:0
+      editRoleId: 0
     }
   },
   created() {
@@ -260,15 +266,15 @@ export default {
     // 添加角色（数据库操作）
     addRoleInfo() {
       // 预校验
-      this.$refs.addRoleFormRef.validate(async valid=>{
-        if(!valid){
+      this.$refs.addRoleFormRef.validate(async valid => {
+        if (!valid) {
           return
         }
-        const {data:res} = await this.$http.post('roles',{
-          roleName:this.addRoleForm.roleName,
-          roleDesc:this.addRoleForm.roleDesc
+        const { data: res } = await this.$http.post('roles', {
+          roleName: this.addRoleForm.roleName,
+          roleDesc: this.addRoleForm.roleDesc
         })
-        if(res.meta.status !== 201){
+        if (res.meta.status !== 201) {
           return this.$message.error('添加角色失败')
         }
         // 重新获取角色列表
@@ -278,40 +284,40 @@ export default {
       })
     },
     // 打开编辑角色对话框，根据id获取角色数据
-    async editRole(id){
+    async editRole(id) {
       // 保存当前编辑角色的id
       this.editRoleId = id
       // 获取角色数据
-      const {data:res} = await this.$http.get('roles/' + id)
-      if(res.meta.status !== 200){
+      const { data: res } = await this.$http.get('roles/' + id)
+      if (res.meta.status !== 200) {
         return this.$message.error('获取当前角色信息失败')
       }
       this.editRoleForm = res.data
       this.editRoleDialogVisible = true
     },
     // 编辑角色对话框关闭
-    editRoleDialogClosed(){
+    editRoleDialogClosed() {
       // 重置表单
       this.$refs.editRoleFormRef.resetFields()
     },
     // 编辑角色（数据库操作）
-    async editRoleInfo(){
-      const {data:res} = await this.$http.put('roles/' + this.editRoleId,{
-        roleName:this.editRoleForm.roleName,
-        roleDesc:this.editRoleForm.roleDesc
+    async editRoleInfo() {
+      const { data: res } = await this.$http.put('roles/' + this.editRoleId, {
+        roleName: this.editRoleForm.roleName,
+        roleDesc: this.editRoleForm.roleDesc
       })
-      if(res.meta.status !== 200){
+      if (res.meta.status !== 200) {
         return this.$message.error('编辑提交角色失败')
       }
       // 重新获取角色列表
       this.getRolesList()
       // 关闭编辑角色对话框
-     this.editRoleDialogVisible = false
+      this.editRoleDialogVisible = false
       // 成功提示
       this.$message.success('编辑提交角色成功')
     },
     // 删除角色
-    async deleteRole(role){
+    async deleteRole(role) {
       // 弹出确认删除对话框
       const deleteResult = await this.$confirm(
         `此操作将永久删除角色${role.roleName}, 是否继续?`,
@@ -325,8 +331,8 @@ export default {
       if (deleteResult !== 'confirm') {
         return this.$message.info('已取消删除')
       }
-      const { data:res } = await this.$http.delete('roles/' + role.id)
-      if(res.meta.status !== 200){
+      const { data: res } = await this.$http.delete('roles/' + role.id)
+      if (res.meta.status !== 200) {
         return this.$message.error('删除角色失败')
       }
       // 重新获取角色列表
