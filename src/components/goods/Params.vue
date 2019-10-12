@@ -290,7 +290,7 @@ export default {
       }
     },
     // 级联选择器选中项发生改变时触发
-    async handleChange() {
+    handleChange() {
       // 获取参数列表数据
       this.getParamsList()
     },
