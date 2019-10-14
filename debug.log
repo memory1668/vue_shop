@@ -419,3 +419,5 @@
 >>>>>>> goods_list
 [1014/175045.056:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [1014/175045.094:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1014/195313.155:ERROR:crash_report_database_win.cc(469)] failed to stat report
+[1014/195313.194:ERROR:crash_report_database_win.cc(469)] failed to stat report

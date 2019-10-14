@@ -36,7 +36,8 @@ axios.interceptors.response.use(config => {
   NProgress.done()
   return config
 })
-axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// 上线的域名要改成服务器域名或主机号
+axios.defaults.baseURL = 'https://www.kangjie.club:8888/api/private/v1/'
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
