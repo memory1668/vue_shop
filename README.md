@@ -4,7 +4,7 @@
 ## 项目演示
 项目地址：https://www.kangjie.club
 
-![image](http://ruankj.gitee.io/image_bed/yd/show.gif)
+![image](https://github.com/memory1668/images/blob/master/yd/show.gif)
 ## 技术选型
 
 技术 | 说明 | 版本
