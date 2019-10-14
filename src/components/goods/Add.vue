@@ -103,7 +103,7 @@ import _ from 'lodash'
 export default {
   data() {
     return {
-      // 	设置当前激活步骤
+      // 设置当前激活步骤
       // 选中选项卡的name
       activeIndex: '0',
       // 添加商品表单数据对象
@@ -241,7 +241,7 @@ export default {
       const pic = { pic: response.data.tmp_path }
       this.addForm.pics.push(pic)
     },
-    //图片删除
+    // 图片删除
     handleRemove(file) {
       // 获取上传图片的临时路径
       const tmpPath = file.response.data.tmp_path

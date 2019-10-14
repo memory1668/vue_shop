@@ -238,25 +238,28 @@ export default {
     },
     // 添加分类（操作数据库）
     addCateInfo() {
-    //  预校验
-    this.$refs.addCateFormRef.validate(async valid=>{
-      if(!valid){
-        return
-      }
-      const { data: res } = await this.$http.post('categories',this.addCateForm)
-      if(res.meta.status !== 201){
-        return this.$message.error('添加分类数据失败')
-      }
-      // 重新获取商品分类数据列表
-      this.getCateList()
-      // 关闭对话框
-      this.addCateDialogVisible = false
-      // 成功提示
-       this.$message.success('添加分类成功')
-    })
+      //  预校验
+      this.$refs.addCateFormRef.validate(async valid => {
+        if (!valid) {
+          return
+        }
+        const { data: res } = await this.$http.post(
+          'categories',
+          this.addCateForm
+        )
+        if (res.meta.status !== 201) {
+          return this.$message.error('添加分类数据失败')
+        }
+        // 重新获取商品分类数据列表
+        this.getCateList()
+        // 关闭对话框
+        this.addCateDialogVisible = false
+        // 成功提示
+        this.$message.success('添加分类成功')
+      })
     },
     // 监听添加分类对话框关闭事件，重置表单
-    addCateDialogClosed(){
+    addCateDialogClosed() {
       // 重置文本框
       this.$refs.addCateFormRef.resetFields()
       // 重置级联选择器

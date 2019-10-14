@@ -45,6 +45,7 @@
               icon="el-icon-delete"
               size="mini"
               @click="deleteUser(slotProps.row.id)"
+              :disabled="slotProps.row.username === 'admin'"
             ></el-button>
             <el-tooltip
               class="item"
@@ -112,7 +113,12 @@
         </span>
       </el-dialog>
       <!-- 分配角色对话框 -->
-      <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible" width="50%" @close="setRoleDialogClosed">
+      <el-dialog
+        title="分配角色"
+        :visible.sync="setRoleDialogVisible"
+        width="50%"
+        @close="setRoleDialogClosed"
+      >
         <div>
           <p>当前的用户：{{userinfo.username}}</p>
           <p>当前的角色：{{userinfo.role_name}}</p>
@@ -331,7 +337,7 @@ export default {
       return this.$message.success('设置角色成功')
     },
     // 分配角色对话框关闭
-    setRoleDialogClosed(){
+    setRoleDialogClosed() {
       // 重置选中的角色id
       this.selectRoleId = ''
     }

@@ -110,16 +110,20 @@ export default {
     },
     // 删除商品（数据库操作）
     async removeGoods(id) {
-      const confirmResult = await this.$confirm('此操作将永久删除该商品, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).catch(err=>err)
-      if(confirmResult !== 'confirm'){
+      const confirmResult = await this.$confirm(
+        '此操作将永久删除该商品, 是否继续?',
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      ).catch(err => err)
+      if (confirmResult !== 'confirm') {
         return this.$message.info('已取消删除')
       }
-      const {data:res} = await this.$http.delete('goods/' + id)
-      if(res.meta.status !== 200){
+      const { data: res } = await this.$http.delete('goods/' + id)
+      if (res.meta.status !== 200) {
         return this.$message.error('删除商品失败')
       }
       // 重新获取商品列表
@@ -127,7 +131,7 @@ export default {
       this.$message.success('删除商品成功')
     },
     // 通过编程式导航跳转到添加商品组件
-    goAddPage(){
+    goAddPage() {
       this.$router.push('/goods/add')
     }
   }
